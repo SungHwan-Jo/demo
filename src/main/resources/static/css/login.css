@@ -1,0 +1,39 @@
+#memberLogin h1{
+    text-align: center;
+    color: #ff8080;
+    font-family: 돋움체;
+    margin-bottom: 20px;
+}
+
+#memberLogin fieldset{
+    width: 330px;
+    border: 5px solid #CCCCCC;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px auto;
+}
+
+#memberId, #memberPwd{
+    width: 90%;
+    height: 20px;
+    padding: 2px;
+    border: 1px solid #CCCCCC;
+    text-align: left;
+}
+
+#loginBtn, #joinBtn{
+    width: 85%;
+    height: 25px;
+    border-style: none;
+    background-color: skyblue;
+    color: white;
+}
+
+#chk_id, #chk_pwd{
+    color: red;
+    font-size: 12px;
+}
+td{
+    width: 100px;
+}
+

@@ -60,10 +60,23 @@
 
         <!-- rolling file에는 debug, console에는 info 분리하여 처리 가능하다. -->
         <logger name="com.tmax.demo.controller" level="warn" additivity="true" >
-            <AppenderRef ref="daily_error" />
+            <AppenderRef ref="console" />
+        </logger>
+
+        <!-- sql binding variables logging -->
+        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" additivity="false" >
+            <AppenderRef ref="console" />
+        </logger>
+
+        <!-- sql logging -->
+        <logger name="org.hibernate.SQL" level="DEBUG" additivity="false" >
+            <AppenderRef ref="console" />
         </logger>
 
         <!-- ROOT logger-->
-        <Root level="info"></Root>
+        <Root level="info">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Root>
     </Loggers>
 </Configuration>
