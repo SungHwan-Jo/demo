@@ -43,6 +43,7 @@ public class LoginController {
         //      실패: /login redirect
         if(result) {
             session.setAttribute("emailaddress", form.getEmailaddress());
+            session.setAttribute("isLogin", "yes");
             return "redirect:/main";
         } else {
             return "redirect:/login";

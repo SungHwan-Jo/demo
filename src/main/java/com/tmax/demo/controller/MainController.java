@@ -16,7 +16,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(HttpSession session){
-        if (session.getAttribute("emailaddress") == null){
+        if (session.getAttribute("isLogin") == null){
             return "redirect:/login";
         }
         logger.warn("### Main Controller Start ###");
