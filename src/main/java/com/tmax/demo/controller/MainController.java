@@ -13,7 +13,7 @@ public class MainController {
     // Log4j Logger setting
     private final Logger logger = LogManager.getLogger(MainController.class);
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String main(){
         logger.warn("### Main Controller Start ###");
         return "main";

@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
     // Log4j Logger setting
     private final Logger logger = LogManager.getLogger(LoginController.class);
+
+    @GetMapping("/")
+    public String root(){
+        logger.warn("### Login Controller root start ###");
+        return "redirect:/login";
+    }
     @GetMapping("/login")
     public String login(){
 
