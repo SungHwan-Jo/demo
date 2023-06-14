@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -14,7 +15,10 @@ public class MainController {
     private final Logger logger = LogManager.getLogger(MainController.class);
 
     @GetMapping("/main")
-    public String main(){
+    public String main(HttpSession session){
+        if (session.getAttribute("emailaddress") == null){
+            return "redirect:/login";
+        }
         logger.warn("### Main Controller Start ###");
         return "main";
     }
