@@ -4,35 +4,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/login.css"> <!--외부 CSS 설정 -->
     <title>Tmaxsoft Login</title>
-    <script>
-        function check(){
-            var idValue = document.getElementById("member_id").value;
-            var pwValue = document.getElementById("member_pwd").value;
-            var chkId = document.getElementById("chk_id");
-            var chkPwd = document.getElementById("chk_pwd");
-            if(idValue == null || idValue == ""){
-                chkId.innerHTML = "아이디를 입력하세요";
-                document.getElementById("member_name").focus();
-                return;
-            }else{
-                chkId.innerHTML = "";
-                document.getElementById("member_pwd").focus();
-            }
-            if(pwValue == null || pwValue == ""){
-                chkPwd.innerHTML = "비밀번호를 입력하세요"
-                return;
-            }else{
-                chkPwd.innerHTML = "";
-                document.memberLogin.submit();
-            }
-
-        }
-
-        function moveJoin(){
-        	alert("구현 안함");
-            //window.location.href = "Cagree.jsp";
-        }
-    </script>
 </head>
 <body>
 <form action="#" method="post" id="memberLogin" name="memberLogin">

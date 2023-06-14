@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -35,7 +36,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginWithEmail(LoginForm form, HttpSession session) {
+    public String loginWithEmail(LoginForm form, HttpSession session, Model model) {
         //login service 호출
         Boolean result = loginService.login(form.getEmailaddress());
 
@@ -46,7 +47,9 @@ public class LoginController {
             session.setAttribute("isLogin", "yes");
             return "redirect:/main";
         } else {
-            return "redirect:/login";
+            model.addAttribute("message", "로그인 실패");
+            model.addAttribute("searchUrl","/login");
+            return "alert";
         }
 
     }
