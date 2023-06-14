@@ -1,5 +1,6 @@
 package com.tmax.demo.controller;
 
+import com.tmax.demo.service.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,13 @@ public class LoginController {
     private final Logger logger = LogManager.getLogger(LoginController.class);
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+
+    private final LoginService loginService;
+
+    @Autowired
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
     @GetMapping("/login")
     public String login(){
 
@@ -28,10 +36,18 @@ public class LoginController {
 
     @PostMapping("/login")
     public String loginWithEmail(LoginForm form, HttpSession session) {
-        UUID uid = Optional.ofNullable(UUID.class.cast(session.getAttribute("uid")))
-                .orElse(UUID.randomUUID());
-        session.setAttribute("uid", uid);
-        return "redirect:/main";
+        //login service 호출
+        Boolean result = loginService.login(form.getEmailaddress());
+
+        //로그인 성공: session에 추가 /main 접속
+        //      실패: /login redirect
+        if(result) {
+            session.setAttribute("emailaddress", form.getEmailaddress());
+            return "redirect:/main";
+        } else {
+            return "redirect:/login";
+        }
+
     }
 
 
