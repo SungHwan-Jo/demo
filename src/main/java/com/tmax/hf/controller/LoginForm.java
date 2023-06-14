@@ -1,4 +1,4 @@
-package com.tmax.demo.controller;
+package com.tmax.hf.controller;
 
 public class LoginForm {
 

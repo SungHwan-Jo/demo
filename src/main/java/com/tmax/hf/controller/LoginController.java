@@ -1,6 +1,6 @@
-package com.tmax.demo.controller;
+package com.tmax.hf.controller;
 
-import com.tmax.demo.service.LoginService;
+import com.tmax.hf.service.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class LoginController {
             session.setAttribute("isLogin", "yes");
             return "redirect:/main";
         } else {
-            model.addAttribute("message", "로그인 실패");
+            model.addAttribute("message", loginService.getLoginFailMsg());
             model.addAttribute("searchUrl","/login");
             return "alert";
         }

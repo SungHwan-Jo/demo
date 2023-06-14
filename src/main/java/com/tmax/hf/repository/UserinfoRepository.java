@@ -1,7 +1,6 @@
-package com.tmax.demo.repository;
+package com.tmax.hf.repository;
 
-import com.tmax.demo.domain.Userinfo;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.tmax.hf.domain.Userinfo;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

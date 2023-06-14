@@ -1,4 +1,4 @@
-package com.tmax.demo.domain;
+package com.tmax.hf.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
