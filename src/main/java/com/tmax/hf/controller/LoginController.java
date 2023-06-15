@@ -31,7 +31,7 @@ public class LoginController {
     @GetMapping("/login")
     public String login(){
 
-        logger.warn("### Login Controller ###");
+        logger.info("### Login Controller ###");
         return "login";
     }
 
@@ -45,10 +45,12 @@ public class LoginController {
         if(result) {
             session.setAttribute("emailaddress", form.getEmailaddress());
             session.setAttribute("isLogin", "yes");
+            logger.info("Login Controller : Login Success [" + form.getEmailaddress() + "]");
             return "redirect:/main";
         } else {
             model.addAttribute("message", loginService.getLoginFailMsg());
             model.addAttribute("searchUrl","/login");
+            logger.info("Login Controller : Login Fail [" + form.getEmailaddress() + "]");
             return "alert";
         }
 
@@ -58,6 +60,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
+        logger.info("### Main Controller Start ###");
         return "redirect:/login";
     }
 }

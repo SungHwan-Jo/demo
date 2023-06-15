@@ -31,8 +31,7 @@ public class MainController {
             model.addAttribute("searchUrl","/login");
             return "alert";
         }
-        System.out.println(session.getId());
-        logger.warn("### Main Controller Start ###");
+        logger.info("### Main Controller Start ###");
         return "main";
     }
 }
