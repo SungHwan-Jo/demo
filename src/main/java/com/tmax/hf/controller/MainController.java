@@ -1,5 +1,6 @@
 package com.tmax.hf.controller;
 
+import com.tmax.hf.service.ErrCodeMsgService;
 import com.tmax.hf.service.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,16 +19,18 @@ public class MainController {
     private final Logger logger = LogManager.getLogger(MainController.class);
 
     private final LoginService loginService;
+    private final ErrCodeMsgService errCodeMsgService;
     @Autowired
-    public MainController(LoginService loginService) {
+    public MainController(LoginService loginService, ErrCodeMsgService errCodeMsgService) {
         this.loginService = loginService;
+        this.errCodeMsgService = errCodeMsgService;
     }
 
 
     @GetMapping("/main")
     public String main(HttpSession session, Model model){
         if (session.getAttribute("isLogin") == null){
-            model.addAttribute("message", loginService.getLoginTryMsg());
+            model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
             model.addAttribute("searchUrl","/login");
             return "alert";
         }

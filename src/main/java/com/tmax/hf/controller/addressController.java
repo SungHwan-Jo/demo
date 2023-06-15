@@ -1,5 +1,6 @@
 package com.tmax.hf.controller;
 
+import com.tmax.hf.service.ErrCodeMsgService;
 import com.tmax.hf.service.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,17 +18,20 @@ public class addressController {
     private final Logger logger = LogManager.getLogger(MainController.class);
 
     private final LoginService loginService;
+    private final ErrCodeMsgService errCodeMsgService;
     @Autowired
-    public addressController(LoginService loginService) {
+    public addressController(LoginService loginService, ErrCodeMsgService errCodeMsgService) {
         this.loginService = loginService;
+        this.errCodeMsgService = errCodeMsgService;
     }
 
 
 
     @GetMapping("/address")
     public String loadUserAddress(HttpSession session, Model model) {
+        //login 검사
         if (session.getAttribute("isLogin") == null){
-            model.addAttribute("message", loginService.getLoginTryMsg());
+            model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
             model.addAttribute("searchUrl","/login");
             return "alert";
         }
@@ -42,12 +46,12 @@ public class addressController {
         //address service 호출
         Boolean result = loginService.updateAddress(addressForm, session.getAttribute("emailaddress").toString());
         if(result) {
-            logger.info("Login Controller : Update Address Success [" + addressForm.getZipcode() + "]");
+            logger.info("Address Controller : Update Address Success [" + addressForm.getZipcode() + "]");
             return "redirect:/address";
         } else {
-            model.addAttribute("message", loginService.getUpdateAddressFailMsg());
+            model.addAttribute("message", errCodeMsgService.getUpdateAddressFailMsg());
             model.addAttribute("searchUrl","/address");
-            logger.info("Login Controller : Update Address Fail [" + addressForm.getZipcode() + "]");
+            logger.info("Address Controller : Update Address Fail [" + addressForm.getZipcode() + "]");
             return "alert";
         }
 

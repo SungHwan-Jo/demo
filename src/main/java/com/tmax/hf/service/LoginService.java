@@ -42,17 +42,6 @@ public class LoginService {
     public Optional<Userinfo> findOne(String emailaddress) {
         return userinfoRepository.findByEmailaddress(emailaddress);
     }
-
-    public String getLoginFailMsg() {
-        return errCodeMsgRepository.findByBizErrCd("U9998").get().getBizErrCdMsg();
-    }
-
-    public String getLoginTryMsg() {
-        return errCodeMsgRepository.findByBizErrCd("U9997").get().getBizErrCdMsg();
-    }
-    public Object getUpdateAddressFailMsg() {
-        return errCodeMsgRepository.findByBizErrCd("U9996").get().getBizErrCdMsg();
-    }
     public Boolean updateAddress(AddressForm form, String emailaddress) {
         Boolean result = checkZipcode(form.getZipcode()); //zipcode 검증
         if (result == false){
