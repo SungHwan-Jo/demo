@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/login.css"> <!--외부 CSS 설정 -->
-    <title>Login</title>
+    <title>Tmaxsoft Login</title>
     <script>
         function check(){
             var idValue = document.getElementById("member_id").value;
@@ -41,14 +41,14 @@
     <fieldset>
         <table>
             <tr>
-                <td colspan="2"><input type="text" id="member_id" name="member_id" placeholder="이메일 입력"><br><span id="chk_id"></span></td>
+                <td colspan="2"><input type="text" id="emailaddress" name="emailaddress" placeholder="이메일 입력"><br><span id="chk_id"></span></td>
                 <td rowspan="5"><img src="/images/aaa.gif"> </td>
             </tr>
             <tr>
                 <td colspan="2"><input type="password" id="member_pwd" name="member_pwd" placeholder="비밀번호 입력"><br><span id="chk_pwd"></span> </td>
             </tr>
             <tr>
-                <td colspan="2"><input type="button" id="loginBtn" value="로그인" onclick="check()"></td>
+                <td colspan="2"><input type="submit" id="loginBtn" value="로그인" onclick="check()"></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="button" id="joinBtn" value="회원가입" onclick="moveJoin()"></td>

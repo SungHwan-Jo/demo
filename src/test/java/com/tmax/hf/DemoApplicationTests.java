@@ -1,4 +1,4 @@
-package com.tmax.demo;
+package com.tmax.hf;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
