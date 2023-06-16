@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <h1>사용자 주소 변경</h1><br>
+    <h2>변경 전 주소</h2>
+    <div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>항목</th>
+                <th>내용</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>우편번호</td>
+                <td th:text="${userAddress.zipcode}"></td>
+            </tr>
+            <tr>
+                <td>도로명 주소</td>
+                <td th:text="${userAddress.zipaddress}"></td>
+            </tr>
+            <tr>
+                <td>상세 주소</td>
+                <td th:text="${userAddress.detailaddress}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>변경 후 주소(입력해주세요)</h2>
+    <div>
+        <form action="/address" method="post">
+            <div class="form-group">
+                <label for="zipcode">우편번호</label>
+                <input type="text" id="zipcode" name="zipcode" placeholder="우편번호"><br>
+                <label for="zipaddress">도로명 주소</label>
+                <input type="text" id="zipaddress" name="zipaddress" placeholder="도로명 주소"><br>
+                <label for="detailaddress">상세 주소</label>
+                <input type="text" id="detailaddress" name="detailaddress" placeholder="상세 주소"><br>
+            </div>
+            <button type="submit">변경</button>
+        </form>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

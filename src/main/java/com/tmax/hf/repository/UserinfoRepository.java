@@ -18,4 +18,12 @@ public class UserinfoRepository {
         Userinfo userinfo = em.find(Userinfo.class, emailaddress);
         return Optional.ofNullable(userinfo);
     }
+
+    public void updateAddress(Userinfo userinfo, String zipcode, String zipaddress, String detailaddress) {
+        Userinfo info = em.find(Userinfo.class, userinfo.getEmailaddress());
+
+        info.setZipcode(zipcode);
+        info.setZipaddress(zipaddress);
+        info.setDetailaddress(detailaddress);
+    }
 }

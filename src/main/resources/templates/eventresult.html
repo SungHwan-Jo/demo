@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+  <div>
+    <table border="1">
+      <thead>
+      <tr>
+        <th>이메일 주소</th>
+        <th>등록 일시</th>
+        <th>잔여 포인트</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="result : ${resultList}">
+        <td th:text="${result.emailAddress}"></td>
+        <td th:text="${result.regdt}"></td>
+        <td th:text="${result?.point}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div> <!-- /container -->
+</body>
+</html>
