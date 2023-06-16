@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Event Statistics</title>
 </head>
 <body>
-
+<div class="container">
+    <h1>이벤트 통계 조회</h1><br>
+    <h3>조회할 이벤트 코드를 입력해주세요</h3>
+    <div>
+        <form action="/event" method="post">
+            <div class="form-group">
+                <label for="eventCode">이벤트 코드</label>
+                <input type="text" id="eventCode" name="eventCode" placeholder="이벤트 코드"><br>
+            </div>
+            <button type="submit">조회</button>
+        </form>
+    </div>
+</div> <!-- /container -->
 </body>
 </html>
