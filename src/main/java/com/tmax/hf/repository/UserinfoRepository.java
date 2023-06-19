@@ -4,6 +4,7 @@ import com.tmax.hf.domain.Userinfo;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.sql.Timestamp;
 import java.util.Optional;
 
 @Repository
@@ -25,5 +26,16 @@ public class UserinfoRepository {
         info.setZipcode(zipcode);
         info.setZipaddress(zipaddress);
         info.setDetailaddress(detailaddress);
+    }
+
+    public Userinfo updateStatus(Userinfo userinfo) {
+        Userinfo info = em.find(Userinfo.class, userinfo.getEmailaddress());
+        Long Date = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(Date);
+        info.setStatuscd("04");
+        info.setUnregdate(timestamp);
+
+        return info;
+
     }
 }
