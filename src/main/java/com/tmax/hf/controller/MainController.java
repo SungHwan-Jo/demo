@@ -1,5 +1,6 @@
 package com.tmax.hf.controller;
 
+import com.tmax.hf.service.ErrCodeMsgService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,21 @@ public class MainController {
 
     // Log4j Logger setting
     private final Logger logger = LogManager.getLogger(MainController.class);
+    private final ErrCodeMsgService errCodeMsgService;
+
+    public MainController(ErrCodeMsgService errCodeMsgService) {
+        this.errCodeMsgService = errCodeMsgService;
+    }
 
     @GetMapping("/main")
     public String main(Model model, HttpSession session){
         logger.warn("### Main Controller Start ###");
+        //login 검사
+        if (session.getAttribute("isLogin") == null){
+            model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
+            model.addAttribute("searchUrl","/login");
+            return "alert";
+        }
 
         model.addAttribute("appName", "DEMO WEB Application" );
         model.addAttribute("java", System.getProperty("java.specification.version"));
