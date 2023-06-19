@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class addressController {
+public class AddressController {
     // Log4j Logger setting
     private final Logger logger = LogManager.getLogger(MainController.class);
 
     private final LoginService loginService;
     private final ErrCodeMsgService errCodeMsgService;
     @Autowired
-    public addressController(LoginService loginService, ErrCodeMsgService errCodeMsgService) {
+    public AddressController(LoginService loginService, ErrCodeMsgService errCodeMsgService) {
         this.loginService = loginService;
         this.errCodeMsgService = errCodeMsgService;
     }
