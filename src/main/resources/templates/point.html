@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>point</title>
+</head>
+<!--메세지띄우기1-->
+<script th:inline="javascript">
+    var message = [[${message}]];
+    alert(message);
+    location.replace("/main");
+</script>
+<body>
+</body>
+</html>
