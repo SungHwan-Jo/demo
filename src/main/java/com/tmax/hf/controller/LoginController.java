@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     // Log4j Logger setting
     private final Logger logger = LogManager.getLogger(LoginController.class);
-
     private final LoginService loginService;
     private final ErrCodeMsgService errCodeMsgService;
 
@@ -25,9 +24,8 @@ public class LoginController {
         this.loginService = loginService;
         this.errCodeMsgService = errCodeMsgService;
     }
-
     @GetMapping("/")
-    public String root(){
+    public String root() {
         return "redirect:/login";
     }
 
@@ -63,7 +61,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        logger.info("### Main Controller Start ###");
         return "redirect:/login";
     }
+
 }
