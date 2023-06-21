@@ -59,11 +59,11 @@
         </logger>
 
         <!-- rolling file에는 debug, console에는 info 분리하여 처리 가능하다. -->
-        <logger name="com.tmax.hf.online.controller" level="info" additivity="true" >
+        <logger name="com.tmax.hf.online.controller" level="debug" additivity="true" >
             <AppenderRef ref="console" />
         </logger>
 
-        <logger name="com.tmax.hf.online.service" level="info" additivity="true" >
+        <logger name="com.tmax.hf.online.service" level="debug" additivity="true" >
             <AppenderRef ref="console" />
         </logger>
 
@@ -74,14 +74,13 @@
         </logger>
 
         <!-- sql logging -->
-        <logger name="org.hibernate.SQL" level="DEBUG" additivity="false" >
+        <!--<logger name="org.hibernate.SQL" level="DEBUG" additivity="false" >
             <AppenderRef ref="console" />
-        </logger>
+        </logger>-->
 
         <!-- ROOT logger-->
         <Root level="info">
             <AppenderRef ref="console" />
-            <AppenderRef ref="file" />
         </Root>
     </Loggers>
 </Configuration>

@@ -62,7 +62,7 @@ public class EventController {
         if(result != null) {
             logger.info("EventController, Get Event Statistics Success");
             model.addAttribute("resultList",result);
-            return "eventresult";
+            return "event";
         } else {
             model.addAttribute("message", errCodeMsgService.queryEventStatisticsFailMsg());
             model.addAttribute("searchUrl","/oltp/v1/event");
