@@ -48,26 +48,25 @@ public class EventController {
     public String event(HttpSession session, Model model){
         //login 검사
         if (session.getAttribute("isLogin") == null){
+            logger.debug("EventController, Login Failed emailaddress [" + session.getAttribute("emailaddress").toString() +"]");
             model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
             model.addAttribute("searchUrl","/oltp/v1/login");
             return "alert";
         }
-        logger.info("### Event Controller ###");
         return "event";
     }
 
     @PostMapping("/oltp/v1/event")
     public String queryEventStatistics(Model model, EventForm eventForm){
-        System.out.println("++++++++++++++++++++++"+eventForm.getEventCode());
         List<Event> result = eventService.queryEventStatistics(eventForm);
         if(result != null) {
-            logger.info("Event Controller : Get Event Statistics Success [" + eventForm.getEventCode() + "]");
+            logger.info("EventController, Get Event Statistics Success");
             model.addAttribute("resultList",result);
             return "eventresult";
         } else {
             model.addAttribute("message", errCodeMsgService.queryEventStatisticsFailMsg());
             model.addAttribute("searchUrl","/oltp/v1/event");
-            logger.info("Event Controller : Get Event Statistics Fail [" + eventForm.getEventCode() + "]");
+            logger.debug("EventController, Get Event Statistics Fail [" + eventForm.getEventCode() + "]");
             return "alert";
         }
     }

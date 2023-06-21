@@ -33,11 +33,11 @@ public class AddressController {
     public String loadUserAddress(HttpSession session, Model model) {
         //login 검사
         if (session.getAttribute("isLogin") == null){
+            logger.debug("AddressController, Login Failed emailaddress [" + session.getAttribute("emailaddress").toString() +"]");
             model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
             model.addAttribute("searchUrl","/oltp/v1/login");
             return "alert";
         }
-        logger.info("### Address Controller Start ### " + session.getAttribute("emailaddress").toString());
         model.addAttribute("userAddress", loginService.findOne(session.getAttribute("emailaddress").toString()).get());
 
         return "address";
@@ -48,12 +48,12 @@ public class AddressController {
         //address service 호출
         Boolean result = loginService.updateAddress(addressForm, session.getAttribute("emailaddress").toString());
         if(result) {
-            logger.info("Address Controller : Update Address Success [" + addressForm.getZipcode() + "]");
+            logger.info("AddressController, Update Address Success");
             return "redirect:/oltp/v1/address";
         } else {
             model.addAttribute("message", errCodeMsgService.getUpdateAddressFailMsg());
             model.addAttribute("searchUrl","/oltp/v1/address");
-            logger.info("Address Controller : Update Address Fail [" + addressForm.getZipcode() + "]");
+            logger.debug("AddressController, Update Address Fail [" + addressForm.getZipcode() + "]");
             return "alert";
         }
 

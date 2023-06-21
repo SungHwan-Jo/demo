@@ -23,9 +23,9 @@ public class MainController {
 
     @GetMapping("/oltp/v1/main")
     public String main(Model model, HttpSession session){
-        logger.warn("### Main Controller Start ###");
         //login 검사
         if (session.getAttribute("isLogin") == null){
+            logger.debug("MainController, Login Failed emailaddress [" + session.getAttribute("emailaddress").toString() +"]");
             model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
             model.addAttribute("searchUrl","/oltp/v1/login");
             return "alert";

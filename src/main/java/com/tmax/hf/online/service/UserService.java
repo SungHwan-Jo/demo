@@ -2,6 +2,9 @@ package com.tmax.hf.online.service;
 
 import com.tmax.hf.online.domain.Userinfo;
 import com.tmax.hf.online.repository.UserinfoRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,6 +17,9 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserService {
+    @Value("${externalip}")
+    private String externalip;
+    private final Logger logger = LogManager.getLogger(PointService.class);
     private final UserinfoRepository userinfoRepository;
 
     public UserService(UserinfoRepository userinfoRepository) {
@@ -29,7 +35,7 @@ public class UserService {
         String message="";
         String[] result;
         //external system 연동
-        String urlStr = "http://192.168.53.25:8081/external_update.jsp?emailaddress=" + info.getEmailaddress()
+        String urlStr = externalip + "/external_update.jsp?emailaddress=" + info.getEmailaddress()
                 + "&&unregdt=" + info.getUnregdate().getTime() + "&&statuscd=" + info.getStatuscd();
 
         try {
@@ -42,6 +48,7 @@ public class UserService {
 
                 int resCode = urlconn.getResponseCode();
                 if (resCode == HttpURLConnection.HTTP_OK) {
+                    logger.info("UserService, External System Connect");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(urlconn.getInputStream()));
                     String line;
                     while(true){

@@ -59,9 +59,14 @@
         </logger>
 
         <!-- rolling file에는 debug, console에는 info 분리하여 처리 가능하다. -->
-        <logger name="com.tmax.hf.controller" level="info" additivity="true" >
+        <logger name="com.tmax.hf.online.controller" level="info" additivity="true" >
             <AppenderRef ref="console" />
         </logger>
+
+        <logger name="com.tmax.hf.online.service" level="info" additivity="true" >
+            <AppenderRef ref="console" />
+        </logger>
+
 
         <!-- sql binding variables logging -->
         <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" additivity="false" >

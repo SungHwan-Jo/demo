@@ -37,8 +37,6 @@ public class LoginController {
 
     @GetMapping("/oltp/v1/login")
     public String login(){
-
-        logger.info("### Login Controller ###");
         return "login";
     }
 
@@ -52,12 +50,12 @@ public class LoginController {
         if(result) {
             session.setAttribute("emailaddress", form.getEmailaddress());
             session.setAttribute("isLogin", "yes");
-            logger.info("Login Controller : Login Success [" + form.getEmailaddress() + "]");
+            logger.info("LoginController, Login Success");
             return "redirect:/oltp/v1/main";
         } else {
             model.addAttribute("message", errCodeMsgService.getLoginFailMsg());
             model.addAttribute("searchUrl","/oltp/v1/login");
-            logger.info("Login Controller : Login Fail [" + form.getEmailaddress() + "]");
+            logger.debug("LoginController, Login Failed [" + form.getEmailaddress() + "]");
             return "alert";
         }
 

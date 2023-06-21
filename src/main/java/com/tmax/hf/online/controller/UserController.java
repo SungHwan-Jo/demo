@@ -3,6 +3,8 @@ package com.tmax.hf.online.controller;
 import com.tmax.hf.online.domain.Userinfo;
 import com.tmax.hf.online.service.ErrCodeMsgService;
 import com.tmax.hf.online.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import java.util.Optional;
 
 @Controller
 public class UserController {
+    private final Logger logger = LogManager.getLogger(UserController.class);
     private final UserService userService;
     private final ErrCodeMsgService errCodeMsgService;
 
@@ -29,8 +32,10 @@ public class UserController {
      */
     @GetMapping("/oltp/v1/bye")
     public String memberBye(Model model, HttpSession session){
+
         //login 검사
         if (session.getAttribute("isLogin") == null){
+            logger.debug("UserController, Login Failed emailaddress [" + session.getAttribute("emailaddress").toString() +"]");
             model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
             model.addAttribute("searchUrl","/oltp/v1/login");
             return "alert";
@@ -39,6 +44,7 @@ public class UserController {
         Optional<Userinfo> userinfo = userService.findone(session.getAttribute("emailaddress").toString());
         message = userService.userBye(userinfo.get());
         model.addAttribute("message", message);
+        logger.debug("UserController, " + message);
 
         return "bye";
 

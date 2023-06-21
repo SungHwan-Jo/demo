@@ -36,6 +36,7 @@ public class PointController {
     public String getPoint(HttpSession session, Model model) {
         //login 검사
         if (session.getAttribute("isLogin") == null){
+            logger.debug("PointController, Login Failed emailaddress [" + session.getAttribute("emailaddress").toString() +"]");
             model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
             model.addAttribute("searchUrl","/oltp/v1/login");
             return "alert";
@@ -44,7 +45,7 @@ public class PointController {
         String message;
         message = pointService.getPoint(emailaddress);
         model.addAttribute("message", message);
-        logger.info("############### point message: " + message + "###################");
+        logger.debug("PointController, " + message);
 
         return "point";
     }
