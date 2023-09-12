@@ -1,10 +1,13 @@
 package com.tmax.hf.online.domain;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
+@Data
 @Entity
 @Table(name = "userinfo")
 public class Userinfo {

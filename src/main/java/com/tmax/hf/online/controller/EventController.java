@@ -70,4 +70,14 @@ public class EventController {
             return "alert";
         }
     }
+    @GetMapping("/oltp/v1/register")
+    public void register(HttpSession session, Model model){
+        //login 검사
+        if (session.getAttribute("isLogin") == null){
+            logger.debug("EventController, Login Failed emailaddress [" + session.getAttribute("emailaddress").toString() +"]");
+            model.addAttribute("message", errCodeMsgService.getLoginTryMsg());
+            model.addAttribute("searchUrl","/oltp/v1/login");
+        }
+        eventService.regEvent();
+    }
 }
